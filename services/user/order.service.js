@@ -13,7 +13,4 @@ module.exports=class orderServices{
     async updateOrder(id,body){
         return order.findByIdAndUpdate(id,{$set:body},{new:true})
     }
-    async deleteOrder(id){
-        return order.findByIdAndDelete(id)
-    }
 }

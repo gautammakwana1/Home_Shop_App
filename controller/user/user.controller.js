@@ -64,12 +64,12 @@ exports.updateProfile = async(req,res)=>{
             req.body.profileImage= `${req.file.path}`
         }
         user = await userservice.updateuser(user._id,{...req.body,new:true})
-        res.json({message:"User update profile success."})
+        res.json({user,message:"User update profile success."})
     } catch (error) {
         console.log(error)
         res.json({message:"Internal Server Error"})
     }
-}
+};
 
 exports.deleteAccount= async(req,res)=>{
     try {
@@ -77,7 +77,8 @@ exports.deleteAccount= async(req,res)=>{
         if(!user){
             return res.json({message:"User in not found"})
         }
-        user = await userservice.updateuser(user._id,{isDelete:true}); 
+        user = await userservice.updateuser(user._id,{isDelete:true});
+        return res.json("User Delete succesfully");
     } catch (error) {
         console.log(error)
         res.json({message:"Internal Server Error"})

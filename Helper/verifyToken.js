@@ -21,8 +21,8 @@ exports.adminVerifyToken = async(req,res,next)=>{
         let authorized = req.headers['authorization']
         if(typeof authorized!=='undefined'){
             let token = authorized.split(' ')[1]
-            let {adminId}= jwt.verify(token,'darshan')
-            req.amdin = await User.findOne({_id : adminId,isDelete:false});
+            let {adminID}= jwt.verify(token,'darshan')
+            req.admin = await User.findOne({_id : adminID,isDelete:false});
             req.admin?next():res.json({message:"Admin is invalid"})
         }
     } catch (error) {

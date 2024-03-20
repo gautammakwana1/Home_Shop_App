@@ -10,7 +10,7 @@ exports.addToWishlist= async(req,res)=>{
             res.json({message:"UnWishllist successful",isWishlist:0})
         }else{
             wishlist = await wishlistservice.addWishlist({...req.body,user:req.user._id})
-            res.json({message:"Wishlist added successfull.",isWishlist:1});
+            res.json({message:"Wishlist added successfull."});
         }
     } catch (error) {
         console.log(error)

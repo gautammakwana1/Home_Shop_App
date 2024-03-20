@@ -9,4 +9,4 @@ orderRoute.get('/get-order',upload.any(),userVerifytoken,getOrder);
 orderRoute.delete('/delete-order',upload.any(),userVerifytoken,deleteOrder);
 
 
-module.exports= orderRoute
+module.exports= orderRoute;

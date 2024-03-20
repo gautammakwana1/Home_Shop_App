@@ -60,7 +60,7 @@ exports.deleteCart = async(req,res)=>{
         if(!cart){
             return res.json({message:"Cart is not found"})
         }
-        cart = await cartservice.deleteCart(cart._id)
+        cart = await cartservice.updateCart(cart._id,{isDelete: true});
         res.json({message:"Cart delete successs."});
     } catch (error) {
         console.log(error)

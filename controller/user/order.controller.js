@@ -11,7 +11,7 @@ exports.addToOrder= async(req,res)=>{
             return res.json({message:"Cart is not found"})
         }
         let  orderItem= cart.map((item)=>({
-                cartItem : item.cartItem._id,
+                cartItems : item.cartItem._id,
                 quantity:item.quantity,
                 price:item.cartItem.price
             }))
@@ -20,8 +20,8 @@ exports.addToOrder= async(req,res)=>{
                 user: req.user._id,
                 items : orderItem,
                 totalAmount: totalPrice
-            })    
-        cart = await cartService.updateCart(req.user._id,{isDelete:true});
+            })
+        cart = await cartService.updateManyCart(req.user._id,{isDelete:true});
         res.json({newOrder,message:"Order new create success."})
     } catch (error) {
         console.log(error)
@@ -32,7 +32,7 @@ exports.addToOrder= async(req,res)=>{
 
 exports.getOrder = async(req,res)=>{
     try {
-        let order = await orderService.getOrder({user:req.user._id,isDelete:false})
+        let order = await orderService.getAllOrders({user:req.user._id,isDelete:false})
         if(!order){
             return res.json({messgae:"Order is not found"})
         }
@@ -45,11 +45,11 @@ exports.getOrder = async(req,res)=>{
 
 exports.deleteOrder= async(req,res)=>{
     try {
-        let order = await orderService.getOrder({user:req.user._id,isDelete:false})
+        let order = await orderService.getOrder({user:req.user._id,_id:req.body.orderID,isDelete:false})
         if(!order){
             return res.json({messgae:"Order is not found"})
         }
-        order= await orderService.updateOrder(order._id,{isDelete:true,new:true});
+        order= await orderService.updateOrder(order._id,{isDelete:true});
         res.json({order,message:"Order delete ssuccess"})
     } catch (error) {
         console.log(error)

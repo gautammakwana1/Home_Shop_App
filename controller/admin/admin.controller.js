@@ -56,19 +56,6 @@ exports.getAdmin = async (req,res)=>{
     };
 };
 
-exports.getAllAdmin = async (req,res)=>{
-    try {
-        let admin = await adminservice.getAllAdmins({isAdmin: true, isDelete: false});
-        if (!admin) {
-            return res.json("User is not found.Please try again");
-        };
-        return res.json({USERS: admin});
-    } catch (error) {
-        console.log(error);
-        return res.json("Internal Server Error");
-    };
-};
-
 exports.updateAdmin = async (req,res)=>{
     try {
         let admin = await adminservice.getadmin(req.admin._id);
@@ -135,35 +122,4 @@ exports.deleteAdmin = async (req,res)=>{
         console.log(error);
         return res.json("Internal Server Error");
     };
-};
-
-exports.deleteAdminPer = async (req,res)=>{
-    try {
-        let admin = await adminservice.getadmin(req.admin._id);
-        if (!admin) {
-            return res.json("User is not found");
-        };
-        admin = await adminservice.deleteaccount(req.admin._id);
-        return res.json("User is Permanently delted succesfully");
-    } catch (error) {
-        console.log(error);
-        return res.json("Internal Server Error");
-    };
-};
-
-exports.getAllUser = async (req,res)=>{
-    try {
-        let admin = await adminservice.getadmin(req.admin._id);
-        if (!admin) {
-        return res.json("User is not found");
-        };
-        let users = await userservice.getAllUsers({isAdmin: false, isDelete: false});
-        if (!users) {
-            return res.json("Users is not available...");
-        };
-        return res.json({USERS: users});
-    } catch (error) {
-        console.log(error);
-        return res.json("Internal Server Error");
-    }
 };

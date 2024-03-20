@@ -28,8 +28,4 @@ module.exports= class cartServices{
             return cart.updateMany({user : user},{$set : body},{new:true});
        
     }
-
-    async deleteCart(id){
-        return cart.findByIdAndDelete(id)
-    }
 }

@@ -28,13 +28,14 @@ const wishlistRoute = require('./routes/wishlist.routes')
 const cartRoute = require('./routes/user/cart.routes')
 const orderRoute = require('./routes/user/order.routes')
 
-
 app.use('/api/user',userRoute)
-app.use('/api/admin',productRoute)
-app.use('/api/admin',adminRoute)
 app.use('/api/wishlist',wishlistRoute)
 app.use('/api/cart',cartRoute)
 app.use('/api/order',orderRoute)
+
+app.use('/api/admin',adminRoute)
+app.use('/api/admin',productRoute)
+
 
 
 app.listen(PORT,()=>{

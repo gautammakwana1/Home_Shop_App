@@ -54,7 +54,7 @@ exports.updateproduct= async (req,res)=>{
         if(req.file){
             req.body.productImage= `${req.file.path}`
         }
-        product =await productservice.updateProduct(product._id,{...req.body,new:true})
+        product =await productservice.updateProduct(product._id,{...req.body})
         res.json({product,message:"Product update success."})
     } catch (error) {
         console.log(error)

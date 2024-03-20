@@ -7,6 +7,9 @@ module.exports= class productServices{
     async getSpecificProduct(id){
         return product.findById(id)
     }
+    async getProduct(body){
+        return product.findOne(body);
+    }
     async getAllProducts (body){
         return product.find(body)
     }
